@@ -1,0 +1,64 @@
+Two Sum
+
+1-Brute Force Solution
+
+Time Complexity -> O(n^2)
+Space Complexity -> O(1)
+
+[Using two loops just traverse through each and every element and find the two elements which add up to the target]
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+     int[] result=new int[2];
+     for(int i=0;i<nums.length-1;i++)
+     {
+         for(int j=i+1;j<nums.length;j++)
+         {
+             if(nums[i]+nums[j]==target)
+             {
+                 result[0]=i;
+                 result[1]=j;
+             }
+         }
+     }
+        return result;
+            
+    }
+}
+        
+2-Best Approach(Using HashMap)
+
+Time Complexity -> O(n)
+Space Complexity -> O(n)
+
+[I am first checking for target-nums[i] value in the map and if it is not there then i am adding that value in the map. I am adding the value after  checking the map because it solves the corner case where the array is [3,2,4] and target is 6. Here if we add the elements first in the map then we find that 6-3=3 is there in the map and hence the answer is [0,0].]      
+        
+        
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+     HashMap<Integer,Integer> map=new HashMap<>();
+     int[] result=new int[2];
+     for(int i=0;i<nums.length;i++)
+     {
+        
+        if(map.containsKey(target-nums[i]))
+        {
+            result[0]=map.get(target-nums[i]);
+            result[1]=i;
+            return result;
+        }
+         else
+         {
+             map.put(nums[i],i);
+         }
+        
+    }
+        return result;
+            
+    }
+}
+        
+        
+        
+        
+
